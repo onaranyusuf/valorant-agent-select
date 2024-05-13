@@ -1,15 +1,19 @@
 import { useState } from "react";
 import "./App.css";
+import AgentsData from "./components/AgentsData";
+import Sunset from "./components/Sunset";
+import ChamberIcon from "./assets/agent_icons/Chamber_icon.webp";
+import AgentIcons from './components/AgentIcons';
+
+
 
 function App() {
-  const [count, setCount] = useState(0);
+  console.log(AgentsData);
 
   return (
     <>
-      <div className="flex justify-center items-center h-screen">
-        <h1 className="text-6xl font-bold underline flex justify-center items-center">
-          Hello world!
-        </h1>
+      <div className="">
+        <AgentIcons />
       </div>
     </>
   );
