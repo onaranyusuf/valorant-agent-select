@@ -24,38 +24,38 @@ const importAllVideos = async (videos) => {
   return importedVideos;
 };
 
+const importAllAbilities = async (abilities) => {
+  let importedAbilities = {};
+  await Promise.all(
+    abilities.map(async (ability) => {
+      const { default: importedAbility } = await import(
+        `../assets/agent_abilities_icon/${ability}.webp`
+      );
+      importedAbilities[ability] = importedAbility;
+    })
+  );
+  return importedAbilities;
+};
+
 const iconsToImport = [
-  "Brimstone_icon",
-  "Chamber_icon",
-  "Viper_icon",
-  "Raze_icon",
-  "Omen_icon",
-  "Sage_icon",
-  "Skye_icon",
-  "Killjoy_icon",
-  "Cypher_icon",
-  "Breach_icon",
-  "Sova_icon",
-  "Neon_icon",
-  "KAYO_icon",
-  "Jett_icon",
-  "Reyna_icon",
-  "Phoenix_icon",
-  "Clove_icon",
-  "Yoru_icon",
-  "Astra_icon",
-  "Fade_icon",
-  "Harbor_icon",
-  "Gekko_icon",
-  "Deadlock_icon",
-  "Iso_icon",
+  "Brimstone_icon", "Chamber_icon", "Viper_icon", "Raze_icon", "Omen_icon",
+  "Sage_icon", "Skye_icon", "Killjoy_icon", "Cypher_icon", "Breach_icon",
+  "Sova_icon", "Neon_icon", "KAYO_icon", "Jett_icon", "Reyna_icon",
+  "Phoenix_icon", "Clove_icon", "Yoru_icon", "Astra_icon", "Fade_icon",
+  "Harbor_icon", "Gekko_icon", "Deadlock_icon", "Iso_icon",
+  "Sentinel_icon", "Duelist_icon", "Initiator_icon", "Controller_icon"
 ];
 
+
 const videosToImport = ["Sage_video", "Yoru_video"];
+
+const abilitiesToImport = ["Sage_c", "Sage_q", "Sage_e", "Sage_x"];
 
 const agentIcons = await importAllIcons(iconsToImport);
 
 const agentVideos = await importAllVideos(videosToImport);
+
+const agentAbilities = await importAllAbilities(abilitiesToImport);
 
 const AgentsData = [
   {
@@ -105,6 +105,7 @@ const AgentsData = [
     video: agentVideos["Sage_video"],
     selected: false,
     role: "Sentinel",
+    role_icon: agentIcons["Sentinel_icon"],
     role_info:
       "Sentinels are defensive experts who can lock down areas and watch flanks, both on attacker and defender rounds.",
     info: "The bastion of China, Sage creates safety for herself and her team wherever she goes. Able to revive fallen friends and stave off aggressive pushes, she provides a calm center to a hellish fight.",
@@ -112,6 +113,10 @@ const AgentsData = [
     abilities_q_name: "SLOW ORB",
     abilities_e_name: "HEALING ORB",
     abilities_x_name: "RESURRECTION",
+    abilities_c_icon: agentAbilities["Sage_c"],
+    abilities_q_icon: agentAbilities["Sage_q"],
+    abilities_e_icon: agentAbilities["Sage_e"],
+    abilities_x_icon: agentAbilities["Sage_x"],
     abilities_c:
       "EQUIP a barrier orb. FIRE places a wall that fortifies after a few seconds. ALT FIRE rotates the targeter.",
     abilities_q:
