@@ -20,6 +20,34 @@ const AgentInfo = ({ agent }) => {
     setActiveInfo(agent.info);
   }, [agent]);
 
+  const AbilityButton = ({ label, icon, active, onClick }) => (
+    <div
+      className={`w-[90px] flex flex-col items-center justify-center relative`}
+      onClick={onClick}
+    >
+      <span
+        className={`text-center text-white font-bold w-[90px] ${
+          active ? "bg-transparent-gray2" : ""
+        }`}
+      >
+        {label}
+      </span>
+      <div className="w-[90px] flex justify-center pt-1">
+        <div
+          className={`w-[90px] flex justify-center ${
+            active ? "bg-transparent-gray" : ""
+          }`}
+        >
+          <img
+            src={icon}
+            alt="Ability Icon"
+            className="w-[30px] h-[30px] my-1"
+          />
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="absolute top-[40px] right-0 m-5 p-3 bg-transparent shadow-lg rounded-md z-50 text-gray-600 w-[450px]">
       <h1 className="text-md font-semibold uppercase tracking-[1px] text-white">
@@ -30,130 +58,22 @@ const AgentInfo = ({ agent }) => {
       </h1>
 
       <div className="flex items-center mb-3 mt-7 w-[450px]">
-        <div
-          className="w-[90px] flex flex-col items-center justify-center relative"
-          onClick={() => handleInfoChange(agent.info)}
-        >
-          <span
-            className={`text-center text-white font-bold w-[90px] ${
-              activeInfo === agent.info ? "bg-transparent-gray2" : ""
-            }`}
-          >
-            INFO
-          </span>
-          <div className="w-[90px] flex justify-center pt-1">
-            <div
-              className={`w-[90px] flex justify-center  ${
-                activeInfo === agent.info ? "bg-transparent-gray" : ""
-              }`}
-            >
-              <img
-                src={agent.role_icon}
-                alt="Agent Role Icon"
-                className="w-[30px] h-[30px] my-1"
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          className="w-[90px] flex flex-col items-center justify-center relative"
-          onClick={() => handleInfoChange(agent.abilities_c)}
-        >
-          <span
-            className={`text-center text-white font-bold w-[90px] ${
-              activeInfo === agent.abilities_c ? "bg-transparent-gray2" : ""
-            }`}
-          >
-            C
-          </span>
-          <div className="w-[90px] flex justify-center pt-1">
-            <div
-              className={`w-[90px] flex justify-center ${
-                activeInfo === agent.abilities_c ? "bg-transparent-gray" : ""
-              }`}
-            >
-              <img
-                src={agent.abilities_c_icon}
-                alt="Agent Role Icon"
-                className="w-[30px] h-[30px] my-1"
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          className="w-[90px] flex flex-col items-center justify-center relative"
-          onClick={() => handleInfoChange(agent.abilities_q)}
-        >
-          <span
-            className={`text-center text-white font-bold w-[90px] ${
-              activeInfo === agent.abilities_q ? "bg-transparent-gray2" : ""
-            }`}
-          >
-            Q
-          </span>
-          <div className="w-[90px] flex justify-center pt-1">
-            <div
-              className={`w-[90px] flex justify-center ${
-                activeInfo === agent.abilities_q ? "bg-transparent-gray" : ""
-              }`}
-            >
-              <img
-                src={agent.abilities_q_icon}
-                alt="Agent Role Icon"
-                className="w-[30px] h-[30px] my-1"
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          className="w-[90px] flex flex-col items-center justify-center relative"
-          onClick={() => handleInfoChange(agent.abilities_e)}
-        >
-          <span
-            className={`text-center text-white font-bold w-[90px] ${
-              activeInfo === agent.abilities_e ? "bg-transparent-gray2" : ""
-            }`}
-          >
-            E
-          </span>
-          <div className="w-[90px] flex justify-center pt-1">
-            <div
-              className={`w-[90px] flex justify-center ${
-                activeInfo === agent.abilities_e ? "bg-transparent-gray" : ""
-              }`}
-            >
-              <img
-                src={agent.abilities_e_icon}
-                alt="Agent Role Icon"
-                className="w-[30px] h-[30px] my-1"
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          className="w-[90px] flex flex-col items-center justify-center relative"
-          onClick={() => handleInfoChange(agent.abilities_x)}
-        >
-          <span
-            className={`text-center text-white font-bold w-[90px] ${
-              activeInfo === agent.abilities_x ? "bg-transparent-gray2" : ""
-            }`}
-          >
-            X
-          </span>
-          <div className="w-[90px] flex justify-center pt-1">
-            <div
-              className={`w-[90px] flex justify-center ${
-                activeInfo === agent.abilities_x ? "bg-transparent-gray" : ""
-              }`}
-            >
-              <img
-                src={agent.abilities_x_icon}
-                alt="Agent Role Icon"
-                className="w-[30px] h-[30px] my-1"
-              />
-            </div>
-          </div>
+        <div className="flex-col-5 flex">
+          {[
+            { key: "info", label: "INFO", icon: agent.role_icon },
+            { key: "abilities_c", label: "C", icon: agent.abilities_c_icon },
+            { key: "abilities_q", label: "Q", icon: agent.abilities_q_icon },
+            { key: "abilities_e", label: "E", icon: agent.abilities_e_icon },
+            { key: "abilities_x", label: "X", icon: agent.abilities_x_icon },
+          ].map(({ key, label, icon }) => (
+            <AbilityButton
+              key={key}
+              label={label}
+              icon={icon}
+              active={activeInfo === agent[key]}
+              onClick={() => handleInfoChange(agent[key])}
+            />
+          ))}
         </div>
       </div>
 
