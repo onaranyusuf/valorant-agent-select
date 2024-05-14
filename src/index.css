@@ -10,3 +10,12 @@
     font-weight: 500;
     font-style: normal;
 }
+
+
+.bg-transparent-gray {
+    background-color: rgba(241, 235, 235, 0.2); /* Adjust the color and transparency as needed */
+  }
+
+  .bg-transparent-gray2 {
+    background-color: rgba(241, 235, 235, 0.3); /* Adjust the color and transparency as needed */
+  }
