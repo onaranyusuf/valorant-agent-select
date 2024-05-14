@@ -20,6 +20,7 @@ const AgentInfo = ({ agent }) => {
     setActiveInfo(agent.info);
   }, [agent]);
 
+  // Tüm ability icon gösterimi ve info gösterimi
   const AbilityButton = ({ label, icon, active, onClick }) => (
     <div
       className={`w-[90px] flex flex-col items-center justify-center relative`}
@@ -48,6 +49,64 @@ const AgentInfo = ({ agent }) => {
     </div>
   );
 
+  // Tüm ability açıklamaları ve ajan info açıklaması
+  const InfoBlock = ({ title, subtitle, description }) => (
+    <>
+      {description && (
+        <p className="text-xs text-[#dee68c] max-w-[350px] font-medium tracking-[1px]">
+          {description}
+        </p>
+      )}
+      <p className="text-lg uppercase text-white pt-3 anton-regular tracking-[2px]">
+        {title}
+      </p>
+      <p className="text-xs text-white max-w-[350px] font-normal tracking-[1px] pt-1">
+        {subtitle}
+      </p>
+    </>
+  );
+
+  const ActiveContent = ({ activeInfo, agent }) => {
+    switch (activeInfo) {
+      case agent.abilities_c:
+        return (
+          <InfoBlock
+            title={agent.abilities_c_name}
+            subtitle={agent.abilities_c}
+          />
+        );
+      case agent.abilities_q:
+        return (
+          <InfoBlock
+            title={agent.abilities_q_name}
+            subtitle={agent.abilities_q}
+          />
+        );
+      case agent.abilities_e:
+        return (
+          <InfoBlock
+            title={agent.abilities_e_name}
+            subtitle={agent.abilities_e}
+          />
+        );
+      case agent.abilities_x:
+        return (
+          <InfoBlock
+            title={agent.abilities_x_name}
+            subtitle={agent.abilities_x}
+          />
+        );
+      default:
+        return (
+          <InfoBlock
+            title={agent.role}
+            subtitle={agent.role_info}
+            description={agent.info}
+          />
+        );
+    }
+  };
+
   return (
     <div className="absolute top-[40px] right-0 m-5 p-3 bg-transparent shadow-lg rounded-md z-50 text-gray-600 w-[450px]">
       <h1 className="text-md font-semibold uppercase tracking-[1px] text-white">
@@ -56,7 +115,7 @@ const AgentInfo = ({ agent }) => {
       <h1 className="text-7xl text-[#dee68c] font-semibold uppercase anton-regular tracking-[1px]">
         {agent.name}
       </h1>
-
+      {/* Tüm ability icon gösterimi ve info gösterimi */}
       <div className="flex items-center mb-3 mt-7 w-[450px]">
         <div className="flex-col-5 flex">
           {[
@@ -77,60 +136,9 @@ const AgentInfo = ({ agent }) => {
         </div>
       </div>
 
+      {/* Tüm ability açıklamaları ve ajan info açıklaması */}
       <p className="text-xs max-w-[350px] font-medium tracking-[1px]">
-        {activeInfo === agent.info ? (
-          <>
-            <p className="text-xs text-[#dee68c] max-w-[350px] font-medium tracking-[1px]">
-              {agent.info}
-            </p>
-            <p className="text-lg uppercase text-white pt-3 anton-regular tracking-[1px]">
-              {agent.role}
-            </p>
-            <p className="text-xs text-white max-w-[350px]">
-              {agent.role_info}
-            </p>
-          </>
-        ) : activeInfo === agent.abilities_c ? (
-          <>
-            <p className="text-lg uppercase text-white pt-3 anton-regular tracking-[2px]">
-              {agent.abilities_c_name}
-            </p>
-            <p className="text-xs text-white max-w-[350px] font-normal tracking-[1px] pt-1">
-              {agent.abilities_c}
-            </p>
-          </>
-        ) : activeInfo === agent.abilities_q ? (
-          <>
-            <p className="text-lg uppercase text-white pt-3 anton-regular tracking-[2px]">
-              {agent.abilities_q_name}
-            </p>
-            <p className="text-xs text-white max-w-[350px] font-normal tracking-[1px] pt-1">
-              {agent.abilities_q}
-            </p>
-          </>
-        ) : activeInfo === agent.abilities_e ? (
-          <>
-            <p className="text-lg uppercase text-white pt-3 anton-regular tracking-[2px]">
-              {agent.abilities_e_name}
-            </p>
-            <p className="text-xs text-white max-w-[350px] font-normal tracking-[1px] pt-1">
-              {agent.abilities_e}
-            </p>
-          </>
-        ) : activeInfo === agent.abilities_x ? (
-          <>
-            <p className="text-lg uppercase text-white pt-3 anton-regular tracking-[2px]">
-              {agent.abilities_x_name}
-            </p>
-            <p className="text-xs text-white max-w-[350px] font-normal tracking-[1px]">
-              {agent.abilities_x}
-            </p>
-          </>
-        ) : (
-          <p className="text-xs text-[#dee68c] max-w-[350px] font-medium tracking-[1px]">
-            {agent.info}
-          </p>
-        )}
+        <ActiveContent activeInfo={activeInfo} agent={agent} />
       </p>
     </div>
   );
