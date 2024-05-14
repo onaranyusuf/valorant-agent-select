@@ -29,70 +29,188 @@ const AgentInfo = ({ agent }) => {
         {agent.name}
       </h1>
 
-      <div className="flex items-center mb-3">
-        <Icon label="INFO" onClick={() => handleInfoChange(agent.info)} />
-        <Icon label="C" onClick={() => handleInfoChange(agent.abilities_c)} />
-        <Icon label="Q" onClick={() => handleInfoChange(agent.abilities_q)} />
-        <Icon label="E" onClick={() => handleInfoChange(agent.abilities_e)} />
-        <Icon label="X" onClick={() => handleInfoChange(agent.abilities_x)} />
+      <div className="flex items-center mb-3 mt-7 w-[450px]">
+        <div
+          className="w-[90px] flex flex-col items-center justify-center relative"
+          onClick={() => handleInfoChange(agent.info)}
+        >
+          <span
+            className={`text-center text-white font-bold w-[90px] ${
+              activeInfo === agent.info ? "bg-transparent-gray2" : ""
+            }`}
+          >
+            INFO
+          </span>
+          <div className="w-[90px] flex justify-center pt-1">
+            <div
+              className={`w-[90px] flex justify-center  ${
+                activeInfo === agent.info ? "bg-transparent-gray" : ""
+              }`}
+            >
+              <img
+                src={agent.role_icon}
+                alt="Agent Role Icon"
+                className="w-[30px] h-[30px] my-1"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="w-[90px] flex flex-col items-center justify-center relative"
+          onClick={() => handleInfoChange(agent.abilities_c)}
+        >
+          <span
+            className={`text-center text-white font-bold w-[90px] ${
+              activeInfo === agent.abilities_c ? "bg-transparent-gray2" : ""
+            }`}
+          >
+            C
+          </span>
+          <div className="w-[90px] flex justify-center pt-1">
+            <div
+              className={`w-[90px] flex justify-center ${
+                activeInfo === agent.abilities_c ? "bg-transparent-gray" : ""
+              }`}
+            >
+              <img
+                src={agent.abilities_c_icon}
+                alt="Agent Role Icon"
+                className="w-[30px] h-[30px] my-1"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="w-[90px] flex flex-col items-center justify-center relative"
+          onClick={() => handleInfoChange(agent.abilities_q)}
+        >
+          <span
+            className={`text-center text-white font-bold w-[90px] ${
+              activeInfo === agent.abilities_q ? "bg-transparent-gray2" : ""
+            }`}
+          >
+            Q
+          </span>
+          <div className="w-[90px] flex justify-center pt-1">
+            <div
+              className={`w-[90px] flex justify-center ${
+                activeInfo === agent.abilities_q ? "bg-transparent-gray" : ""
+              }`}
+            >
+              <img
+                src={agent.abilities_q_icon}
+                alt="Agent Role Icon"
+                className="w-[30px] h-[30px] my-1"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="w-[90px] flex flex-col items-center justify-center relative"
+          onClick={() => handleInfoChange(agent.abilities_e)}
+        >
+          <span
+            className={`text-center text-white font-bold w-[90px] ${
+              activeInfo === agent.abilities_e ? "bg-transparent-gray2" : ""
+            }`}
+          >
+            E
+          </span>
+          <div className="w-[90px] flex justify-center pt-1">
+            <div
+              className={`w-[90px] flex justify-center ${
+                activeInfo === agent.abilities_e ? "bg-transparent-gray" : ""
+              }`}
+            >
+              <img
+                src={agent.abilities_e_icon}
+                alt="Agent Role Icon"
+                className="w-[30px] h-[30px] my-1"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="w-[90px] flex flex-col items-center justify-center relative"
+          onClick={() => handleInfoChange(agent.abilities_x)}
+        >
+          <span
+            className={`text-center text-white font-bold w-[90px] ${
+              activeInfo === agent.abilities_x ? "bg-transparent-gray2" : ""
+            }`}
+          >
+            X
+          </span>
+          <div className="w-[90px] flex justify-center pt-1">
+            <div
+              className={`w-[90px] flex justify-center ${
+                activeInfo === agent.abilities_x ? "bg-transparent-gray" : ""
+              }`}
+            >
+              <img
+                src={agent.abilities_x_icon}
+                alt="Agent Role Icon"
+                className="w-[30px] h-[30px] my-1"
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
       <p className="text-xs max-w-[350px] font-medium tracking-[1px]">
-        {
-          activeInfo === agent.info ? (
-            <>
-              <p className="text-xs text-[#dee68c] max-w-[350px] font-medium tracking-[1px]">
-                {agent.info}
-              </p>
-              <p className="text-lg uppercase text-white pt-3 anton-regular tracking-[1px]">
-                {agent.role}
-              </p>
-              <p className="text-xs text-white max-w-[350px]">
-                {agent.role_info}
-              </p>
-            </>
-          ) : activeInfo === agent.abilities_c ? (
-            <>
-              <p className="text-lg uppercase text-white pt-3 anton-regular tracking-[2px]">
-                {agent.abilities_c_name}
-              </p>
-              <p className="text-xs text-white max-w-[350px] font-normal tracking-[1px] pt-1">
-                {agent.abilities_c}
-              </p>
-            </>
-          ) : activeInfo === agent.abilities_q ? (
-            <>
-              <p className="text-lg uppercase text-white pt-3 anton-regular tracking-[2px]">
-                {agent.abilities_q_name}
-              </p>
-              <p className="text-xs text-white max-w-[350px] font-normal tracking-[1px] pt-1">
-                {agent.abilities_q}
-              </p>
-            </>
-          ) : activeInfo === agent.abilities_e ? (
-            <>
-              <p className="text-lg uppercase text-white pt-3 anton-regular tracking-[2px]">
-                {agent.abilities_e_name}
-              </p>
-              <p className="text-xs text-white max-w-[350px] font-normal tracking-[1px] pt-1">
-                {agent.abilities_e}
-              </p>
-            </>
-          ) : activeInfo === agent.abilities_x ? (
-            <>
-              <p className="text-lg uppercase text-white pt-3 anton-regular tracking-[2px]">
-                {agent.abilities_x_name}
-              </p>
-              <p className="text-xs text-white max-w-[350px] font-normal tracking-[1px]">
-                {agent.abilities_x}
-              </p>
-            </>
-          ) : (
+        {activeInfo === agent.info ? (
+          <>
             <p className="text-xs text-[#dee68c] max-w-[350px] font-medium tracking-[1px]">
               {agent.info}
             </p>
-          )
-        }
+            <p className="text-lg uppercase text-white pt-3 anton-regular tracking-[1px]">
+              {agent.role}
+            </p>
+            <p className="text-xs text-white max-w-[350px]">
+              {agent.role_info}
+            </p>
+          </>
+        ) : activeInfo === agent.abilities_c ? (
+          <>
+            <p className="text-lg uppercase text-white pt-3 anton-regular tracking-[2px]">
+              {agent.abilities_c_name}
+            </p>
+            <p className="text-xs text-white max-w-[350px] font-normal tracking-[1px] pt-1">
+              {agent.abilities_c}
+            </p>
+          </>
+        ) : activeInfo === agent.abilities_q ? (
+          <>
+            <p className="text-lg uppercase text-white pt-3 anton-regular tracking-[2px]">
+              {agent.abilities_q_name}
+            </p>
+            <p className="text-xs text-white max-w-[350px] font-normal tracking-[1px] pt-1">
+              {agent.abilities_q}
+            </p>
+          </>
+        ) : activeInfo === agent.abilities_e ? (
+          <>
+            <p className="text-lg uppercase text-white pt-3 anton-regular tracking-[2px]">
+              {agent.abilities_e_name}
+            </p>
+            <p className="text-xs text-white max-w-[350px] font-normal tracking-[1px] pt-1">
+              {agent.abilities_e}
+            </p>
+          </>
+        ) : activeInfo === agent.abilities_x ? (
+          <>
+            <p className="text-lg uppercase text-white pt-3 anton-regular tracking-[2px]">
+              {agent.abilities_x_name}
+            </p>
+            <p className="text-xs text-white max-w-[350px] font-normal tracking-[1px]">
+              {agent.abilities_x}
+            </p>
+          </>
+        ) : (
+          <p className="text-xs text-[#dee68c] max-w-[350px] font-medium tracking-[1px]">
+            {agent.info}
+          </p>
+        )}
       </p>
     </div>
   );
