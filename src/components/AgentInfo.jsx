@@ -42,7 +42,7 @@ const AgentInfo = ({ agent }) => {
           <img
             src={icon}
             alt="Ability Icon"
-            className="w-[30px] h-[30px] my-1"
+            className="w-[35px] h-[35px] my-1"
           />
         </div>
       </div>
